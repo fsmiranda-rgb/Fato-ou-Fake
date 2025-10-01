@@ -7,7 +7,7 @@
     <style>
         /* --- ESTILOS CSS GERAIS --- */
         body {
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
             background-color: #f4f7f9;
@@ -19,95 +19,195 @@
             margin: auto;
             background-color: #fff;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
             text-align: center;
         }
         h1 {
-            color: #007bff;
+            color: #0056b3;
             text-align: center;
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
         }
+        h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
         
         /* --- ESTILOS DA TELA DE BOAS-VINDAS --- */
-        #tela-boas-vindas {
-             display: block; 
+        #tela-boas-vindas { 
+            display: block; 
         }
         #tela-boas-vindas ul { 
             text-align: left; 
             max-width: 800px; 
             margin: 20px auto; 
-            list-style-type: disc; 
+            list-style-type: '🔎 ';
             padding-left: 40px; 
         }
         #tela-boas-vindas li {
             text-align: left; 
             margin-bottom: 10px;
         }
-        
-        /* --- ESTILOS DA TELA DE ANÁLISE --- */
-        #tela-analise {
-            display: none;
-            padding: 50px 20px;
-            background-color: #e6f7ff;
-            border: 1px solid #007bff;
+        #btn-comecar {
+            padding: 15px 35px;
+            font-size: 1.3em;
+            background-color: #28a745;
+            color: white;
+            border: none;
             border-radius: 8px;
-        }
-        #timer-analise {
-            font-size: 3em;
-            color: #dc3545;
-            margin: 20px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
             font-weight: bold;
         }
-        #dica-rotativa {
-            background-color: white;
-            padding: 20px;
-            border-radius: 6px;
-            margin-top: 20px;
-            min-height: 80px;
-            font-style: italic;
-            border-left: 5px solid #007bff;
+        #btn-comecar:hover {
+            background-color: #1e7e34;
+        }
+        
+        /* --- ESTILOS DA ÁREA DO JOGO (ANÁLISE ATIVA) --- */
+        #game-area { 
+            display: none; 
             text-align: left;
         }
-
-        /* --- ESTILOS DO JOGO E FEEDBACK --- */
-        #game-area { display: none; text-align: left;}
-        #feedback-area { display: none; margin-top: 30px; padding: 20px; border-top: 2px solid #007bff; text-align: left; }
-        .noticia-box { border: 1px solid #ddd; padding: 20px; border-radius: 6px; margin-bottom: 20px; background-color: #f9f9f9; text-align: left; }
-        .botoes-decisao { text-align: center; }
-        .botoes-decisao button { padding: 15px 30px; margin: 10px; font-size: 1.1em; cursor: pointer; border: none; border-radius: 5px; transition: background-color 0.3s; }
-        .botoes-decisao .fato { background-color: #28a745; color: white; }
-        .botoes-decisao .fake { background-color: #dc3545; color: white; }
-        .acerto { color: #28a745; font-weight: bold; }
-        .erro { color: #dc3545; font-weight: bold; }
+        .noticia-box { 
+            border: 1px solid #ddd; 
+            padding: 20px; 
+            border-radius: 6px; 
+            margin-bottom: 25px; 
+            background-color: #f9f9f9; 
+            text-align: left; 
+        }
         
-        /* Contêiner do botão de reinício - DESTAQUE FORÇADO PELO CSS */
+        /* Contêiner de Dicas */
+        #dicas-on-demand {
+            background-color: #e6f7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #007bff;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        #dicas-on-demand:hover {
+            background-color: #d1efff;
+        }
+        #dicas-on-demand p { margin: 5px 0; font-style: italic; color: #007bff; }
+        
+        /* Estilos para a tabela de ANÁLISE PRÉ-DECISÃO COM CAMPO DE ENTRADA */
+        #tabela-analise-pre-decisao { 
+            margin-top: 20px; 
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+        #tabela-analise-pre-decisao th, 
+        #tabela-analise-pre-decisao td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            text-align: left; 
+        }
+        #tabela-analise-pre-decisao th { 
+            background-color: #007bff; 
+            color: white; 
+            font-weight: bold; 
+        }
+        #tabela-analise-pre-decisao textarea {
+            width: 100%;
+            min-height: 40px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            padding: 5px;
+            resize: vertical;
+        }
+
+        /* Botões de Decisão */
+        .botoes-decisao { 
+            text-align: center; 
+            margin-top: 30px;
+        }
+        .botoes-decisao button { 
+            padding: 15px 40px; 
+            margin: 10px; 
+            font-size: 1.2em; 
+            cursor: pointer; 
+            border: none; 
+            border-radius: 8px; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            font-weight: bold;
+        }
+        .botoes-decisao button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .botoes-decisao .fato { 
+            background-color: #28a745; 
+            color: white; 
+        }
+        .botoes-decisao .fake { 
+            background-color: #dc3545; 
+            color: white; 
+        }
+
+        /* --- ESTILOS DO FEEDBACK --- */
+        #feedback-area { 
+            display: none; 
+            margin-top: 30px; 
+            padding: 20px; 
+            border: 2px solid #007bff; 
+            border-radius: 8px;
+            text-align: left; 
+            background-color: #f0f8ff;
+        }
+        .feedback-acerto { 
+            color: #1e7e34; 
+            font-weight: bold; 
+            font-size: 1.5em; 
+        }
+        .feedback-erro { 
+            color: #c82333; 
+            font-weight: bold; 
+            font-size: 1.5em;
+        }
+        
+        .analise-critica { 
+            background-color: #ffe0b2;
+            padding: 5px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        /* Estilo da Tabela de Análise (Feedback) - Com 3 Colunas! */
+        #tabela-feedback {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            text-align: left;
+        }
+        #tabela-feedback th, #tabela-feedback td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+            width: 33%; /* Distribuição de largura para 3 colunas */
+        }
+        #tabela-feedback th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Reiniciar Botão */
         #btn-reiniciar-container { 
             text-align: center; 
             margin-top: 40px; 
-            padding-top: 20px; /* Adiciona um espaço extra */
-            border-top: 1px solid #eee; /* Separador */
+            padding-top: 20px;
+            border-top: 1px solid #eee;
         }
-        #btn-reiniciar-container button {
-            padding: 12px 25px;
-            font-size: 1.2em;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #btn-reiniciar-container button:hover {
-            background-color: #0056b3;
-        }
-
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: left; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; vertical-align: top; }
-        th { background-color: #007bff; color: white; font-weight: bold; }
         
-        /* --- ESTILOS DA ANIMAÇÃO DE CONFETES --- */
+        /* Animação de Confetes */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -135,89 +235,97 @@
 
 <div id="confetti-holder" class="confetti-container" style="display:none;"></div>
 
-<audio id="alerta-timer" src="https://www.soundjay.com/misc/sounds/alert-alarm-4.mp3" preload="auto"></audio>
-
 <div class="container">
     <h1>🎲 Jogo: Fato ou Fake? Teste Seus Conhecimentos!</h1>
 
     <div id="tela-boas-vindas">
-        <h2>Seja Bem-vindo(a) ao Jogo Fato ou Fake!</h2>
-        <p>Prepare-se para testar sua habilidade de identificar a verdade no mundo das notícias.</p>
+        <h2>Seja Bem-vindo(a)!</h2>
+        <p>Este jogo treina a habilidade mais importante na era digital: a **checagem de informações**.</p>
         
-        <h3>Instruções do Jogo:</h3>
+        <h3>Seu Desafio: Analisar, Anotar e Decidir!</h3>
         <ul>
-            <li>**Leia a Notícia e Decida:** Clique em **FATO** ou **FAKE**.</li>
-            <li>**Preencha o Formulário:** Use o arquivo colaborativo (botão amarelo) para sua análise.</li>
-            <li>**Resultado:** Descubra se acertou e receba a análise completa.</li>
+            <li>**Análise Ativa:** Use o Guia de Critérios e **preencha a coluna "Minha Análise"** com suas conclusões.</li>
+            <li>**Decisão:** Clique em **FATO** ou **FAKE** apenas quando terminar sua análise.</li>
+            <li>**Feedback Construtivo:** Sua análise será comparada com o veredito oficial.</li>
         </ul>
 
         <button id="btn-comecar" onclick="
             document.getElementById('tela-boas-vindas').style.display = 'none';
             document.getElementById('game-area').style.display = 'block';
             iniciarJogo();
-        ">COMEÇAR JOGO</button>
-        
-        <div id="dicas-midia">
-            <h3>Dicas de Educação Midiática:</h3>
-            <ul>
-                <li>**Desconfie do Tom Emocional:** Se o título usa muitas exclamações ou apela à raiva/euforia, cheque a fonte.</li>
-                <li>**Busque Corroboração:** Notícias verdadeiras são reportadas por vários veículos de imprensa confiáveis.</li>
-            </ul>
-        </div>
+        ">COMEÇAR MINHA CHECAGEM</button>
     </div>
     
     <div id="game-area">
-        <h2>📰 Sua Notícia Sorteada</h2>
+        <p style="text-align: right; font-weight: bold; color: #007bff;">
+            Tempo Gasto: <span id="tempo-gasto">00:00</span>
+        </p>
+
+        <h2>📰 Notícia para Análise</h2>
         <div class="noticia-box">
             <h3 id="noticia-titulo"></h3>
             <p id="noticia-corpo"></p>
             <p><strong>URL da Fonte:</strong> <a id="noticia-url-fonte" href="#" target="_blank"></a></p>
         </div>
         
+        <div id="dicas-on-demand" onclick="exibirProximaDica()">
+            Clique aqui para uma **DICA RÁPIDA** de checagem!
+            <p id="dica-rotativa"></p>
+        </div>
+        
         <div style="text-align: center; margin-top: 20px; margin-bottom: 30px;">
             <button onclick="abrirGoogleDocsAnalise()" style="padding: 10px 20px; background-color: #ffc107; color: #333; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
-                🔗 Abrir Formulário de Análise (Google Docs)
+                🔗 Formulário de Análise Externa (Para anotações longas e pesquisa)
             </button>
         </div>
 
+        <h2>🛠️ Guia de Análise Ativa (Preencha antes de decidir!)</h2>
+        <table id="tabela-analise-pre-decisao">
+            <thead>
+                <tr>
+                    <th>Critério</th>
+                    <th>Perguntas-chave e Sinais de Alerta</th>
+                    <th>Minha Análise (Obrigatório Preencher)</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-criterios-corpo">
+                </tbody>
+        </table>
 
-        <h2>✅ Sua Decisão</h2>
+        <div id="alerta-preenchimento" style="color: #dc3545; margin-top: 10px; font-weight: bold; display: none;">
+            🚨 Continue sua análise para treinar sua habilidade de checagem!
+        </div>
+
+
+        <h2>✅ Sua Decisão Final</h2>
+        <p>Após a análise, clique na sua conclusão:</p>
         <div class="botoes-decisao">
             <button class="fato" onclick="registrarDecisao('FATO')">É FATO (VERDADEIRA)</button>
             <button class="fake" onclick="registrarDecisao('FAKE')">É FAKE (FALSA)</button>
         </div>
     </div>
     
-    <div id="tela-analise">
-        <h2>⏱️ Tempo de Análise! (5 Minutos)</h2>
-        <p>Use este tempo para preencher seu formulário e pesquisar a notícia.</p>
-        
-        <div id="timer-analise">05:00</div>
-
-        <div id="dica-rotativa">
-            **Dica de Checagem:** Busque a fonte original da informação! Muitas fake news escondem a origem do dado.
-        </div>
-    </div>
-
-
     <div id="feedback-area">
-        <h2>💡 Feedback e Análise</h2>
+        <h2>💡 Feedback e Análise Detalhada</h2>
         
-        <p><strong>Resultado:</strong> <span id="resultado-texto"></span></p>
+        <p><span id="resultado-texto" class="feedback-acerto"></span></p>
+        <p>Você gastou <strong id="tempo-final-feedback"></strong> para realizar sua checagem.</p>
+        
         <p><strong>Link da Notícia Verificada:</strong> <a id="url-verificacao" href="#" target="_blank">Clique para conferir a fonte oficial ou a checagem</a></p>
 
-        <h3>🛠️ O Guia para Não Cair em Armadilhas</h3>
-        <table>
+        <h3>🔬 O Veredito: Por que era <span id="veredicto-tipo"></span>?</h3>
+        <p>O ponto-chave para a checagem foi a análise do critério: **<span id="analise-critica-resumo" class="analise-critica"></span>**.</p>
+        
+        <table id="tabela-feedback">
             <thead>
                 <tr>
                     <th>Critério</th>
-                    <th>Perguntas-chave</th>
-                    <th>Sinais de Alerta</th>
-                    <th>Análise da Notícia</th>
+                    <th>Sua Análise</th>
+                    <th>Veredito Oficial</th>
                 </tr>
             </thead>
             <tbody id="tabela-analise-corpo">
-                </tbody>
+            </tbody>
         </table>
         
         <div id="btn-reiniciar-container">
@@ -228,11 +336,16 @@
 
 <script>
     // --- CONFIGURAÇÕES E LINKS ---
-    // LINK ATUALIZADO COM O SEU DOCUMENTO COLABORATIVO
     const GOOGLE_DOCS_ANALYSIS_LINK = "https://docs.google.com/document/d/1kHWEIlbCkGdA13xC2FSbuyIIrntHg7Rm/edit?usp=sharing&ouid=112347906534821610029&rtpof=true&sd=true";
     
-    // TEMPO DE ANÁLISE ALTERADO PARA 5 MINUTOS (300 SEGUNDOS)
-    const tempoAnaliseSegundos = 300; 
+    // CRITÉRIOS BÁSICOS
+    const criteriosBasicos = [
+        ["Fonte", "Quem publicou? É confiável? (Ex: Site oficial vs. blog desconhecido)"],
+        ["Autor", "Existe um autor ou especialista identificado?"],
+        ["Data", "Qual a data de publicação? É recente e relevante?"],
+        ["Linguagem", "O tom é emocional e exagerado? Há erros de português?"],
+        ["Corroboração", "Mais de uma fonte confiável reportou a mesma informação?"]
+    ];
 
     // --- DADOS DO JOGO ---
     const noticias = [
@@ -241,34 +354,30 @@
             titulo: "URGENTE: Chá de casca de banana cura todas as variantes da gripe em 24h, diz estudo de Harvard",
             corpoNoticia: "Um novo estudo bombástico da Universidade de Harvard (sem link direto) revelou que um simples chá caseiro, feito com cascas de banana orgânica, é 100% eficaz contra todas as cepas de gripe conhecidas. A reportagem afirma que a grande mídia está escondendo essa informação e incentiva o compartilhamento imediato.",
             tipo: 'FAKE',
-            // URL de Exemplo (FAKE)
             urlFonte: "https://www.fonte-inexistente-fake-news.com.br/banana-cura-tudo",
-            analise: [
-                ["Fonte", "Quem publicou? É confiável?", "Site desconhecido, sem 'Sobre nós'", "O site é pouco conhecido e não tem um endereço oficial (.edu ou .org)."],
-                ["Autor", "Quem escreveu? É especialista?", "Sem autor identificado", "O autor é anônimo."],
-                ["Data", "Quando foi publicado? É atual?", "Data ausente ou manipulada", "A data é recente, mas a informação é antiga e não se sustenta."],
-                ["Contrário à Evidência", "Os fatos são verificáveis?", "Exageros, generalizações", "Promete 'cura milagrosa' (exagero) e cita 'Harvard' sem link (generalização)."],
-                ["Linguagem", "Como é o tom do texto?", "Apelo emocional excessivo, erros", "Usa 'URGENTE' e incita a raiva ('mídia escondendo'), apelando à emoção."],
-                ["Imagens", "As imagens são autênticas?", "Sinais de manipulação, sem créditos", "A foto usada é de um banco de imagens genérico, sem relação com a notícia."],
-                ["Corroboração", "Outras fontes confirmam?", "Informação isolada, sem corroboração", "Nenhuma agência de notícias ou fonte de saúde confiável reportou isso."]
-            ]
+            analiseOficial: [
+                ["Fonte", "A fonte é a 'fonte-inexistente-fake-news', sem reputação no meio de saúde."],
+                ["Autor", "Sem autor ou pesquisador de Harvard identificado para validar o estudo."],
+                ["Data", "A data é ausente ou vaga, impossibilitando a verificação do estudo original."], 
+                ["Linguagem", "Usa palavras como 'URGENTE', 'bombástico' e 'escondendo' (apelo emocional extremo)."],
+                ["Corroboração", "Nenhuma agência de saúde ou jornal confiável reportou a 'cura milagrosa'."]
+            ],
+            critico: "Linguagem" 
         },
         {
             id: 2,
             titulo: "OMS alerta para o aumento de casos de sarampo e reforça a importância da vacinação",
             corpoNoticia: "A Organização Mundial da Saúde (OMS) emitiu um comunicado nesta semana, expressando preocupação com o recente aumento global de casos de sarampo, uma doença altamente contagiosa. A OMS reiterou que a vacina tríplice viral (sarampo, caxumba e rubéola) é a forma mais segura e eficaz de prevenção. O comunicado citou dados atualizados do Ministério da Saúde local.",
             tipo: 'FATO',
-            // URL de Exemplo (FATO): Link funcional para a página da OMS na Wikipedia
             urlFonte: "https://pt.wikipedia.org/wiki/Organiza%C3%A7%C3%A3o_Mundial_da_Sa%C3%BAde",
-            analise: [
-                ["Fonte", "Quem publicou? É confiável?", "Site desconhecido, sem 'Sobre nós'", "A fonte é a OMS (Organização Mundial da Saúde), uma autoridade global."],
-                ["Autor", "Quem escreveu? É especialista?", "Sem autor identificado", "O comunicado é oficial, vindo de uma instituição reconhecida e citando especialistas em saúde."],
-                ["Data", "Quando foi publicado? É atual?", "Data ausente ou manipulada", "A data é atual, refletindo um comunicado recente da organização."],
-                ["Conteúdo", "Os fatos são verificáveis?", "Exageros, generalizações", "Os dados são objetivos e citam fontes oficiais (Ministério da Saúde)."],
-                ["Linguagem", "Como é o tom do texto?", "Apelo emocional excessivo, erros", "O tom é informativo e de alerta, mas equilibrado, típico de um órgão oficial."],
-                ["Imagens", "As imagens são autênticas?", "Sinais de manipulação, sem créditos", "A imagem utilizada é creditada e pertinente ao tema (ex: foto de uma vacina)."],
-                ["Corroboração", "Outras fontes confirmam?", "Informação isolada, sem corroboração", "O alerta foi amplamente divulgado por veículos de imprensa confiáveis no mundo todo."]
-            ]
+            analiseOficial: [
+                ["Fonte", "A fonte é a OMS (Organização Mundial da Saúde), uma autoridade global reconhecida."],
+                ["Autor", "O comunicado é oficial, vindo de uma instituição e citando fontes locais oficiais."],
+                ["Data", "O comunicado cita a data 'nesta semana', indicando informação recente e relevante."], 
+                ["Linguagem", "O tom é informativo e de alerta, mas equilibrado, típico de um órgão oficial."],
+                ["Corroboração", "O alerta foi amplamente divulgado por múltiplos veículos de imprensa confiáveis."]
+            ],
+            critico: "Fonte"
         }
     ];
 
@@ -276,20 +385,16 @@
         "Desconfie de títulos apelativos e que usam muitas letras maiúsculas ou exclamações. Isso é isca!",
         "Cheque a data da publicação. Notícias antigas circulam como se fossem atuais para enganar.",
         "Quem é o autor? Se o autor não é identificado ou é desconhecido, eleva-se o risco de ser fake.",
-        "Procure o logotipo de agências de checagem (como Lupa, Aos Fatos) na página do site. ",
-        "Se a notícia só existe em um lugar, e esse lugar não é confiável, é provável que seja falsa.",
-        "Analise as imagens: elas são reais ou foram manipuladas/retiradas de outro contexto?",
-        "Notícias verdadeiras e importantes são sempre reportadas por múltiplos veículos de grande porte e reputação.",
-        "Se a notícia apela fortemente às suas emoções (raiva, medo, euforia), pare! O emocional atrapalha a análise racional."
+        "Notícias verdadeiras e importantes são sempre reportadas por múltiplos veículos de grande porte e reputação."
     ];
 
-    // --- VARIÁVEIS DE ESTADO (Globais para controle de fluxo) ---
+    // --- VARIÁVEIS DE ESTADO ---
     let noticiaSorteada = null;
     let decisaoUsuario = null; 
-    let timerAnaliseIntervalo = null;
-    let timerDicaIntervalo = null;
+    let analiseUsuario = {};
+    let cronometroIntervalo = null;
+    let segundosCronometro = 0;
     
-
     // --- FUNÇÕES DE CONTROLE GLOBAIS ---
     
     function formatarTempo(segundos) {
@@ -299,139 +404,170 @@
     }
 
     window.abrirGoogleDocsAnalise = function() {
-        // Usa o seu link de Google Docs agora!
         window.open(GOOGLE_DOCS_ANALYSIS_LINK, '_blank');
     }
 
-    // A lógica de inicialização do jogo (Sorteio e carregamento dos dados)
+    function iniciarCronometro() {
+        if (cronometroIntervalo) clearInterval(cronometroIntervalo);
+        segundosCronometro = 0;
+        cronometroIntervalo = setInterval(() => {
+            segundosCronometro++;
+            document.getElementById('tempo-gasto').textContent = formatarTempo(segundosCronometro);
+        }, 1000);
+    }
+    
+    window.exibirProximaDica = function() {
+        const dicaRotativa = document.getElementById('dica-rotativa');
+        const indiceDica = Math.floor(Math.random() * dicasMidiaticas.length);
+        dicaRotativa.textContent = dicasMidiaticas[indiceDica];
+    }
+    
+    function preencherTabelaCriterios() {
+        const tabelaCorpo = document.getElementById('tabela-criterios-corpo');
+        tabelaCorpo.innerHTML = '';
+        analiseUsuario = {}; 
+
+        criteriosBasicos.forEach(criterio => {
+            const tr = document.createElement('tr');
+            
+            // Coluna 1: Critério
+            const tdCrit = document.createElement('td');
+            tdCrit.textContent = criterio[0];
+            tr.appendChild(tdCrit);
+
+            // Coluna 2: Perguntas-chave
+            const tdPerg = document.createElement('td');
+            tdPerg.textContent = criterio[1];
+            tr.appendChild(tdPerg);
+            
+            // Coluna 3: Input do Usuário (Minha Análise)
+            const tdInput = document.createElement('td');
+            const textarea = document.createElement('textarea');
+            textarea.id = `input-analise-${criterio[0]}`;
+            textarea.placeholder = `Escreva sua conclusão sobre o critério ${criterio[0]}...`;
+            tdInput.appendChild(textarea);
+            tr.appendChild(tdInput);
+            
+            tabelaCorpo.appendChild(tr);
+        });
+    }
+
     window.iniciarJogo = function() {
-        
-        // 1. Prepara o jogo (Sorteia a notícia)
+        iniciarCronometro();
+
         const indiceSorteado = Math.floor(Math.random() * noticias.length);
         noticiaSorteada = noticias[indiceSorteado];
 
-        // 2. Insere o conteúdo 
         document.getElementById('noticia-titulo').textContent = noticiaSorteada.titulo;
         document.getElementById('noticia-corpo').textContent = noticiaSorteada.corpoNoticia;
         
-        // 3. Exibe a URL da fonte e ativa os botões
         const noticiaUrlFonteElement = document.getElementById('noticia-url-fonte');
         noticiaUrlFonteElement.href = noticiaSorteada.urlFonte;
-        // Exibe apenas o domínio para melhor leitura
         noticiaUrlFonteElement.textContent = `Clique para abrir a fonte original: ${noticiaSorteada.urlFonte.replace(/https?:\/\//, '').split('/')[0]}`; 
         
-        // Ativa os botões
-        document.querySelectorAll('.botoes-decisao button').forEach(btn => btn.disabled = false);
-
-        // Limpeza de estado de telas anteriores (garantia)
-        document.getElementById('tela-analise').style.display = 'none';
         document.getElementById('feedback-area').style.display = 'none'; 
+        document.getElementById('dica-rotativa').textContent = '';
+        document.getElementById('alerta-preenchimento').style.display = 'none';
+
+        document.querySelectorAll('.botoes-decisao button').forEach(btn => btn.disabled = false);
+        
+        preencherTabelaCriterios();
     }
     
-    // Função que registra a decisão (chamada pelos botões FATO/FAKE)
+    function coletarAnaliseUsuario() {
+        let todosPreenchidos = true;
+        
+        // Percorre os inputs, salva os dados e verifica se estão vazios
+        criteriosBasicos.forEach(criterio => {
+            const id = `input-analise-${criterio[0]}`;
+            const valor = document.getElementById(id).value.trim();
+            
+            if (valor === "") {
+                todosPreenchidos = false;
+            }
+            analiseUsuario[criterio[0]] = valor; 
+        });
+        return todosPreenchidos;
+    }
+
+    // FUNÇÃO REGISTRAR DECISÃO COM ALERTA DE CONFIRMAÇÃO (MELHORIA DE UX)
     window.registrarDecisao = function(decisao) {
         decisaoUsuario = decisao;
         
-        // Desabilita os botões de decisão
+        const todosPreenchidos = coletarAnaliseUsuario();
+        const alertaPreenchimento = document.getElementById('alerta-preenchimento');
+
+        if (!todosPreenchidos) {
+            // Se os campos estão vazios, dispara o alerta de confirmação (Melhor UX)
+            alertaPreenchimento.style.display = 'none'; // Esconde a mensagem normal por um momento
+            
+            const confirmacao = confirm("Atenção! Você não preencheu todos os campos de análise. Tem certeza que deseja ver o veredito final agora?");
+            
+            if (!confirmacao) {
+                // Se o usuário cancelou, ele volta para preencher
+                alertaPreenchimento.style.display = 'block'; 
+                return;
+            }
+            // Se o usuário confirmou (OK), ele quer pular a análise e nós permitimos.
+        }
+
+        // Se todos foram preenchidos OU o usuário confirmou que quer pular
+        if (cronometroIntervalo) clearInterval(cronometroIntervalo);
+        
         document.querySelectorAll('.botoes-decisao button').forEach(btn => btn.disabled = true);
 
-        // 1. Transição para Tela de Análise
-        document.getElementById('game-area').style.display = 'none';
-        document.getElementById('tela-analise').style.display = 'block';
-        
-        // 2. Inicia o Temporizador de Análise
-        iniciarTemporizadorAnalise();
-        
-        // 3. Inicia a Rotação de Dicas (a cada 10 segundos)
-        iniciarRotacaoDicas();
+        mostrarFeedback();
     }
     
-    // --- LÓGICA DO TEMPORIZADOR DE ANÁLISE E DICAS ---
-
-    function iniciarRotacaoDicas() {
-        const dicaRotativa = document.getElementById('dica-rotativa');
-        let indiceDica = 0;
-        
-        const exibirProximaDica = () => {
-            dicaRotativa.innerHTML = `**Dica de Checagem:** ${dicasMidiaticas[indiceDica]}`;
-            indiceDica = (indiceDica + 1) % dicasMidiaticas.length; 
-        };
-
-        exibirProximaDica();
-
-        if (timerDicaIntervalo) {
-            clearInterval(timerDicaIntervalo);
-        }
-
-        timerDicaIntervalo = setInterval(exibirProximaDica, 10000); 
-    }
-
-    function iniciarTemporizadorAnalise() {
-        const timerAnalise = document.getElementById('timer-analise');
-        const alertaAudio = document.getElementById('alerta-timer'); 
-        
-        let segundosRestantes = tempoAnaliseSegundos;
-        timerAnalise.textContent = formatarTempo(segundosRestantes);
-        
-        // Tenta pré-carregar o áudio para contornar o bloqueio de navegadores
-        if (alertaAudio) {
-            alertaAudio.load();
-        }
-
-        if (timerAnaliseIntervalo) {
-            clearInterval(timerAnaliseIntervalo);
-        }
-
-        timerAnaliseIntervalo = setInterval(() => {
-            segundosRestantes--;
-            timerAnalise.textContent = formatarTempo(segundosRestantes);
-
-            if (segundosRestantes <= 0) {
-                // Toca o som da buzina
-                if (alertaAudio) {
-                    // O .play() com catch evita que o erro de bloqueio de autoplay quebre o código
-                    alertaAudio.play().catch(e => console.warn("Aviso: O navegador pode ter bloqueado o áudio automático."));
-                }
-
-                clearInterval(timerAnaliseIntervalo);
-                clearInterval(timerDicaIntervalo); 
-                
-                alert("TEMPO ESGOTADO! A fase de análise terminou.");
-                
-                mostrarFeedback();
-            }
-        }, 1000);
-    }
-
-    // --- LÓGICA DO FEEDBACK ---
+    // --- LÓGICA DO FEEDBACK (Corrigida) ---
 
     function mostrarFeedback() {
         const resultadoTexto = document.getElementById('resultado-texto');
         const acertou = decisaoUsuario === noticiaSorteada.tipo;
         
-        document.getElementById('tela-analise').style.display = 'none';
+        document.getElementById('game-area').style.display = 'none';
         document.getElementById('feedback-area').style.display = 'block';
         
         if (acertou) {
-            resultadoTexto.className = 'acerto';
-            resultadoTexto.textContent = `Parabéns! Você ACERTOU! A notícia era ${noticiaSorteada.tipo}.`;
+            resultadoTexto.className = 'feedback-acerto';
+            resultadoTexto.textContent = `⭐ PARABÉNS! Você ACERTOU! A notícia era um ${noticiaSorteada.tipo}.`;
             iniciarConfetes();
         } else {
-            resultadoTexto.className = 'erro';
-            resultadoTexto.textContent = `Que pena! Você ERROU. A notícia era ${noticiaSorteada.tipo}.`;
+            resultadoTexto.className = 'feedback-erro';
+            resultadoTexto.textContent = `❌ Que pena! Sua decisão foi '${decisaoUsuario}'. O veredito correto era ${noticiaSorteada.tipo}.`;
         }
-        
+
+        document.getElementById('tempo-final-feedback').textContent = formatarTempo(segundosCronometro);
+
         document.getElementById('url-verificacao').href = noticiaSorteada.urlFonte; 
         
+        document.getElementById('veredicto-tipo').textContent = noticiaSorteada.tipo;
+        document.getElementById('analise-critica-resumo').textContent = noticiaSorteada.critico;
+
         const tabelaCorpo = document.getElementById('tabela-analise-corpo');
         tabelaCorpo.innerHTML = ''; 
-        noticiaSorteada.analise.forEach(linha => {
+        
+        noticiaSorteada.analiseOficial.forEach(linha => {
+            const criterio = linha[0];
+            const analiseOficial = linha[1];
+            
+            // Pega o dado preenchido pelo usuário (ou (Não Preenchido) se estiver vazio)
+            const analiseFeita = analiseUsuario[criterio] || "(Não Preenchido)"; 
+            
             const tr = document.createElement('tr');
-            linha.forEach(dado => {
-                const td = document.createElement('td');
-                td.textContent = dado;
-                tr.appendChild(td);
-            });
+            
+            const tdCrit = document.createElement('td');
+            tdCrit.textContent = criterio;
+            tr.appendChild(tdCrit);
+            
+            const tdSuaAnalise = document.createElement('td');
+            tdSuaAnalise.textContent = analiseFeita;
+            tr.appendChild(tdSuaAnalise);
+
+            const tdVeredito = document.createElement('td');
+            tdVeredito.textContent = analiseOficial;
+            tr.appendChild(tdVeredito);
+            
             tabelaCorpo.appendChild(tr);
         });
     }
@@ -442,38 +578,33 @@
             holder.style.display = 'block';
             const cores = ['#ff0', '#f00', '#0f0', '#00f', '#f0f', '#0ff'];
             
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 70; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
                 confetti.style.left = `${Math.random() * 100}vw`;
                 confetti.style.animationDelay = `${Math.random() * 2}s`;
-                confetti.style.animationDuration = `${2 + Math.random() * 1}s`;
+                confetti.style.animationDuration = `${2 + Math.random() * 1.5}s`;
                 holder.appendChild(confetti);
             }
             
             setTimeout(() => {
                 holder.style.display = 'none';
                 holder.innerHTML = '';
-            }, 5000); 
+            }, 5500);
         }
     }
 
     window.reiniciarJogo = function() {
-        if (timerAnaliseIntervalo) clearInterval(timerAnaliseIntervalo);
-        if (timerDicaIntervalo) clearInterval(timerDicaIntervalo);
+        if (cronometroIntervalo) clearInterval(cronometroIntervalo);
         
-        // Reset de visibilidade
         document.getElementById('game-area').style.display = 'none';
-        document.getElementById('tela-analise').style.display = 'none';
         document.getElementById('feedback-area').style.display = 'none';
         document.getElementById('confetti-holder').style.display = 'none';
 
-        // Mostra a tela de boas-vindas.
         document.getElementById('tela-boas-vindas').style.display = 'block';
     }
 
-    // --- GARANTIA DE ESTADO INICIAL ---
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('tela-boas-vindas').style.display = 'block';
     });
